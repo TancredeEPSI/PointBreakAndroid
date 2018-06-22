@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#406129</color>
+    <color name="colorPrimaryDark">#2A401B</color>
+    <color name="colorAccent">#558237</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorLightGreen">#A7FF6C</color>
+
+    <color name="redFail">#FF0000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="rollandGarros">#9E4422</color>
+    <color name="usOpen">#39885C</color>
+    <color name="wimbledon">#818A49</color>
+    <color name="openAustralie">#00558C</color>
+
+</resources>
