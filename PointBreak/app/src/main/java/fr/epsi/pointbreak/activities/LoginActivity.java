@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // loading des données du début
         progress = new ProgressDialog(this);
         progress.setTitle("Authentification");
-        progress.setMessage("Veuillez patienter pendant l'anthentification");
+        progress.setMessage("Veuillez patienter pendant l'authentification");
         progress.setCancelable(false);
     }
 
