@@ -34,7 +34,7 @@ public class MatchListRecyclerViewViewHolder extends RecyclerView.ViewHolder imp
         mListener = listener;
         tvTeam1.setText(mMatch.playerOneName);
         tvTeam2.setText(mMatch.playerThreeName);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
         textDate.setText(outputFormat.format(mMatch.dateMatch));
     }

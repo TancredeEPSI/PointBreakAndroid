@@ -96,7 +96,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="TextView"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/guidelineV10"
         app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
@@ -142,7 +142,7 @@
         android:layout_marginTop="32dp"
         android:text="TextView"
         android:textAlignment="viewEnd"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV90"
         app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
@@ -195,6 +195,7 @@
         android:layout_marginTop="16dp"
         android:foregroundGravity="center"
         android:text="40 - A"
+        android:textColor="@android:color/white"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="@+id/textNomGauche"
         app:layout_constraintStart_toStartOf="@+id/textNomGauche"
@@ -208,6 +209,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="40 - A"
+        android:textColor="@android:color/white"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="@+id/textNomDroit"
         app:layout_constraintStart_toStartOf="@+id/textNomDroit"
@@ -321,7 +323,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textChallengeGauche"
         app:layout_constraintEnd_toEndOf="@+id/textChallengeGauche"
         app:layout_constraintStart_toStartOf="@+id/textChallengeGauche"
-        app:srcCompat="@drawable/challenge" />
+        app:srcCompat="@drawable/challenge_white" />
 
     <TextView
         android:id="@+id/textChallengeGauche"
@@ -332,7 +334,7 @@
         android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="0/3"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH50"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV50"
@@ -348,7 +350,7 @@
         android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="0"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH50"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV50"
@@ -365,7 +367,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textWarningGauche"
         app:layout_constraintEnd_toEndOf="@+id/textWarningGauche"
         app:layout_constraintStart_toStartOf="@+id/textWarningGauche"
-        app:srcCompat="@drawable/warning" />
+        app:srcCompat="@drawable/warning_white" />
 
     <TextView
         android:id="@+id/textChallengeDroite"
@@ -376,7 +378,7 @@
         android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="0/3"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH50"
         app:layout_constraintEnd_toEndOf="parent"
@@ -392,7 +394,7 @@
         android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="0"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH50"
         app:layout_constraintEnd_toEndOf="parent"
@@ -409,7 +411,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textWarningDroite"
         app:layout_constraintEnd_toEndOf="@+id/textWarningDroite"
         app:layout_constraintStart_toStartOf="@+id/textWarningDroite"
-        app:srcCompat="@drawable/warning" />
+        app:srcCompat="@drawable/warning_white" />
 
     <ImageView
         android:id="@+id/imageChallengeDroite"
@@ -421,7 +423,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textChallengeDroite"
         app:layout_constraintEnd_toEndOf="@+id/textChallengeDroite"
         app:layout_constraintStart_toStartOf="@+id/textChallengeDroite"
-        app:srcCompat="@drawable/challenge" />
+        app:srcCompat="@drawable/challenge_white" />
 
     <Chronometer
         android:id="@+id/chronometer"

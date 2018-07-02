@@ -1,5 +1,6 @@
 package fr.epsi.pointbreak.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -36,6 +37,8 @@ import fr.epsi.pointbreak.dataRequest.DataRequest;
 import fr.epsi.pointbreak.keys.Keys;
 import fr.epsi.pointbreak.models.DataMatch;
 import fr.epsi.pointbreak.models.Match;
+
+import static fr.epsi.pointbreak.R.color.colorWhite;
 
 public class MatchActivity extends AppCompatActivity implements DataRequest.ActionInterface {
 
@@ -172,14 +175,14 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         builder.setPositiveButton(team1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Challenge.intValue, 1);
+                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Challenge.intValue, 2);
                 progress.show();
             }
         });
         builder.setNegativeButton(team2, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Challenge.intValue, 2);
+                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Challenge.intValue, 1);
                 progress.show();
             }
         });
@@ -204,7 +207,7 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         builder.setPositiveButton(team1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Warning.intValue, 1);
+                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Warning.intValue, 2);
                 progress.show();
             }
         });
@@ -212,7 +215,7 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Warning.intValue, 2);
+                DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Warning.intValue, 1);
                 progress.show();
             }
         });
@@ -265,6 +268,7 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         builder.show();
     }
 
+    @SuppressLint("ResourceAsColor")
     private void initMenuAlerte(final Activity activity) {
 
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
@@ -289,6 +293,8 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
             @Override
             public void onClick(View view) {
                 DataRequest.getInstance().sendAction(activity, match.id, Keys.Action.Medic.intValue, dataMatch.m_service);
+                fabAlerte.performClick();
+
             }
         });
 
@@ -359,7 +365,13 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         btnWIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.pointWon.intValue,dataMatch.m_service);
+                if( isRunning ){
+                    displayPause();
+                    resultBtn(false);
+                }else{
+                    DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.pointWon.intValue,dataMatch.m_service);
+                }
+
             }
         });
         btnWIn.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
@@ -372,7 +384,13 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         btnLoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.pointWon.intValue,dataMatch.m_service == 1 ? 2 : 1);
+                if( isRunning ){
+                    displayPause();
+                    resultBtn(false);
+                }else{
+                    DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.pointWon.intValue,dataMatch.m_service == 1 ? 2 : 1);
+                }
+
             }
         });
         btnLoose.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
@@ -385,7 +403,13 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         btnAce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.Ace.intValue,dataMatch.m_service);
+                if( isRunning ){
+                    displayPause();
+                    resultBtn(false);
+                }else{
+                    DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.Ace.intValue,dataMatch.m_service);
+                }
+
             }
         });
         btnAce.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
@@ -398,7 +422,13 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         btnFault.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.Fault.intValue,dataMatch.m_service);
+                if( isRunning ){
+                    displayPause();
+                    resultBtn(false);
+                }else{
+                    DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.Fault.intValue,dataMatch.m_service);
+                }
+
             }
         });
         btnFault.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
@@ -411,7 +441,12 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         btnLet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.Let.intValue,dataMatch.m_service);
+                if( isRunning ){
+                    displayPause();
+                    resultBtn(false);
+                }else{
+                    DataRequest.getInstance().sendAction(matchActivity, match.id, Keys.Action.Let.intValue,dataMatch.m_service);
+                }
             }
         });
         btnLet.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
@@ -442,6 +477,7 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         });
     }
 
+    @SuppressLint("ResourceAsColor")
     private void initComposants() {
 
         //view
@@ -577,7 +613,7 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
 
     @Override
     public void errorActionCallback() {
-        this.resultBtn(true);
+        this.resultBtn(false);
         progress.dismiss();
         Toast.makeText(this,"Erreur dans le rechargement des donneés",Toast.LENGTH_LONG).show();
     }
@@ -598,6 +634,10 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
     protected void onDestroy() {
         super.onDestroy();
         isRunning = false;
+    }
+
+    private void displayPause(){
+        Toast.makeText(this,"La partie est en pause, veuillez reprendre le match avant de continuer",Toast.LENGTH_LONG).show();
     }
 
     private void resultBtn(Boolean result){
