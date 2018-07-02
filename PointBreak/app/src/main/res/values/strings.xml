@@ -35,7 +35,7 @@
     <string name="Ok">Ok</string>
     <string name="ChooseWin">Choose Win</string>
     <string name="ChooseLoose">Choose Loose</string>
-    <string name="PauseFinished">Pause Finished</string>
+    <string name="PauseFinished">Pause terminée</string>
     <string name="Start">Start</string>
     <string name="TimeRemaining">Time Remaining</string>
     <string name="PointWon">Point Won</string>

@@ -26,6 +26,7 @@ import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 import com.unstoppable.submitbuttonview.SubmitButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -83,6 +84,8 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
     private List<List<String>> score = new ArrayList<>();
     private RecyclerView setListRecycler;
     private SetListRecyclerViewAdapter setListAdpater;
+    private TextView labelScoreHaut;
+    private TextView labelScoreBas;
 
     //warnings / challenges
     private TextView textChallengeDroit;
@@ -109,6 +112,8 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         imageFlagGauche.setImageResource(getFlag(match.playerThreeCountry));
         textPrenomDroite.setText(match.playerOneName);
         imageFlagDroite.setImageResource(getFlag(match.playerOneCountry));
+        labelScoreBas.setText(match.playerThreeName);
+        labelScoreHaut.setText(match.playerOneName);
 
         if ( match.isSimple ){
             textNomGauche.setVisibility(View.INVISIBLE);
@@ -416,13 +421,23 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
             }
         });
 
+        btnChrono.setText("Start");
+        textChrono.setText("");
         btnChrono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (!isRunning) {
                     countDownTimer.start();
                     isRunning = true;
+                    btnChrono.setText("Stop");
+                }else{
+                    countDownTimer.onFinish();
+                    countDownTimer.cancel();
+                    btnChrono.setText("Start");
+                    isRunning = false;
                 }
+
             }
         });
     }
@@ -479,6 +494,8 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         textScoreT1 = findViewById(R.id.textScoreGauche);
         textScoreT2 = findViewById(R.id.textScoreDroite);
         setListRecycler = findViewById(R.id.setList);
+        labelScoreHaut = findViewById(R.id.labelScoreHaut);
+        labelScoreBas = findViewById(R.id.labelScoreBas);
 
         //btn
         btnWIn = findViewById(R.id.btnWin);
@@ -492,16 +509,27 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
 
         //Chrono
         textChrono = findViewById(R.id.textChrono);
-        countDownTimer = new CountDownTimer(5000, 1000) {
+        countDownTimer = new CountDownTimer(300000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                textChrono.setText(getResources().getString(R.string.TimeRemaining) + millisUntilFinished / 1000);
+
+                if ( isRunning ){
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(millisUntilFinished);
+
+                    int minutes = calendar.get(Calendar.MINUTE);
+                    int secondes = calendar.get(Calendar.SECOND);
+                    textChrono.setText( minutes + " : " + secondes );
+                }
+
             }
 
             public void onFinish() {
-                textChrono.setText("done!");
-                showFinTimer();
-                isRunning = false;
+                if( isRunning ){
+                    textChrono.setText("");
+                    showFinTimer();
+                    isRunning = false;
+                }
             }
         };
         chrono = findViewById(R.id.chronometer);
@@ -552,6 +580,24 @@ public class MatchActivity extends AppCompatActivity implements DataRequest.Acti
         this.resultBtn(true);
         progress.dismiss();
         Toast.makeText(this,"Erreur dans le rechargement des donneés",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isRunning = false;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isRunning = false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isRunning = false;
     }
 
     private void resultBtn(Boolean result){
